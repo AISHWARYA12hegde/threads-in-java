@@ -1,0 +1,16 @@
+# Ignore JMeter tool
+jmeter/
+jmeter.zip
+
+# Logs & test results
+*.log
+*.jtl
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+
+# Java build files (if any later)
+*.class
+*.jar
+target/

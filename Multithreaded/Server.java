@@ -3,6 +3,8 @@ package Multithreaded;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.io.IOException;
 
@@ -25,12 +27,13 @@ public class Server {
 
         serverSocket.setSoTimeout(100000);
         System.out.println("server is listening on" +port);
+          ExecutorService executor = Executors.newFixedThreadPool(10);
         while(true){
             Socket clientSocket = serverSocket.accept();
-            Thread thread =new Thread(()-> server.getConsumer().accept(clientSocket));
-               thread.start();
+            executor.execute(()-> server.getConsumer().accept(clientSocket));
+              
         }
-    
+      
     
     
     }
