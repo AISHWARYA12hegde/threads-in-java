@@ -6,13 +6,22 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+
+
 
 public class Server {
     public Consumer<Socket> getConsumer() {
         return (clientSocket) -> {
-            try (PrintWriter toSocket = new PrintWriter(clientSocket.getOutputStream(), true)) {
-                toSocket.println("Hello from server " + clientSocket.getInetAddress());
+            try (BufferedReader fileReader = new BufferedReader(new FileReader("C:\\Users\\aishw\\OneDrive\\Desktop\\WEBSERVER\\data.txt"));
+                PrintWriter toSocket = new PrintWriter(clientSocket.getOutputStream(), true)) {
+                String line;  
+                while ((line = fileReader.readLine()) != null) {
+                  toSocket.println(line); 
+                } 
+          clientSocket.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -25,7 +34,7 @@ public class Server {
         Server server = new Server();
         try ( ServerSocket serverSocket = new ServerSocket(port)){
 
-        serverSocket.setSoTimeout(100000);
+        
         System.out.println("server is listening on" +port);
           ExecutorService executor = Executors.newFixedThreadPool(10);
         while(true){

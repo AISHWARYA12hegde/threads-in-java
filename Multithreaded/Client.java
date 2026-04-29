@@ -23,10 +23,10 @@ public class Client {
                 );
 
                 toSocket.println("hello from client");
-
-                String line = fromSocket.readLine();
-                System.out.println("response from server: " + line);
-
+                String line;
+                while ((line = fromSocket.readLine()) != null) {
+                    System.out.println("response from server: " + line);
+                }
                 socket.close();
 
             } catch (Exception e) {
