@@ -1,35 +1,60 @@
-**Java Multithreaded Socket Project**
+🚀 Multithreaded Socket Project (Java)
+📌 Overview
 
-🚀 *Overview*
+This project is a Java-based client-server socket application that demonstrates multithreading and concurrent request handling. Multiple clients can connect to the server simultaneously, and the server processes each request using separate threads.
 
-
-
-A simple Java client-server socket program using multithreading where multiple clients connect to a server and receive a response.
+It helps understand network programming, concurrency, and performance under load.
 
 ⚙️ Features
-TCP Socket communication
-Multithreaded server (handles multiple clients)
-Multi-threaded client simulation
-Basic request-response system
-
-*How to Run*
-*Server*
-
+TCP-based Client-Server communication using Java Sockets
+Multithreaded server supporting multiple concurrent clients
+Thread pool implementation using ExecutorService
+Basic request–response system between client and server
+Load testing using Apache JMeter
+🏗️ Architecture
+Server: Listens for incoming client connections and processes requests concurrently
+Client: Connects to server and sends messages
+Thread Pool: Manages multiple client requests efficiently without creating excessive threads
+▶️ How to Run
+1. Compile the files
 javac Server.java
-java Server
-*Client*
 javac Client.java
+2. Start the Server
+java Server
+3. Run the Client
 java Client
+
+You can open multiple terminals to simulate multiple clients.
+
 🧠 Concepts Used
+Java Sockets (TCP Communication)
+Multithreading in Java
+ExecutorService (Thread Pooling)
+Client–Server Architecture
+Blocking I/O
+Load Testing with Apache JMeter
+📊 Load Testing
+Simulated 50+ concurrent clients using Apache JMeter
+Evaluated system stability under concurrent load
+Observed response handling under high traffic conditions
+🚧 Challenges Faced & Learnings
+
+During development, I encountered several practical issues:
+
+Initially, the server was not sending responses to clients due to a FileNotFoundException caused by incorrect file paths. This helped me understand the importance of correct file handling and relative paths in Java.
+I observed how blocking I/O works in socket programming, where the client waits indefinitely if the server does not respond properly.
+To improve scalability, I moved from creating a new thread per request to using ExecutorService thread pools, which significantly improved performance and resource management.
+While using Apache JMeter, I initially struggled with configuring virtual users and interpreting metrics. Over time, I learned to analyze throughput, latency, and response time under concurrent load.
+📌 Future Improvements
+Add GUI or web-based client interface
+Implement authentication between client and server
+Add message logging system
+Extend to chat-room style application
+👨‍💻 Tech Stack
+Java 8+
 Java Sockets
-Multithreading
-Client-Server Architecture
+Multithreading (ExecutorService)
+Apache JMeter
+⭐ Summary
 
-
-
-//problems that i faced building this
-“While working on this project, I faced a few practical challenges. Initially, my server wasn’t sending any response to the client, and the client appeared to hang. After debugging, I discovered it was due to an incorrect file path, which caused a FileNotFoundException on the server side. Since the server was handling multiple client requests using threads, the error kept repeating under load. Fixing this helped me understand how file handling and relative paths work in Java.
-
-I also learned how blocking I/O works in socket programming, because the client was waiting for a response when the server wasn’t sending anything. Another challenge was handling multiple clients efficiently — instead of creating a new thread for each request, I improved the design using a thread pool with ExecutorService, which made the server more scalable.
-
-Finally, while using JMeter for load testing, I initially found it difficult to configure threads and interpret results, but I learned how to simulate concurrent users and analyze performance metrics like throughput and response time
+This project demonstrates how a basic socket system can be scaled using multithreading and how real-world issues like blocking I/O, file handling errors, and concurrency challenges are handled in practice.
