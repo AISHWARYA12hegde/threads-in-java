@@ -55,6 +55,9 @@ Java 8+
 Java Sockets
 Multithreading (ExecutorService)
 Apache JMeter
+
+
+
 ⭐ Summary
 
 This project demonstrates how a basic socket system can be scaled using multithreading and how real-world issues like blocking I/O, file handling errors, and concurrency challenges are handled in practice.
